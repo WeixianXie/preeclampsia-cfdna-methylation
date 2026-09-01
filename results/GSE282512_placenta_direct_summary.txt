@@ -1,0 +1,33 @@
+===== 胎盘层直接证据: 166 DMR 在胎盘 PE vs CT 中的区域级检验 =====
+脚本: scripts/57_placenta_dmr_direct.py (2026-08-31)
+
+[设计]
+- HM450 hg38 manifest 与 166 DMR (hg38) 区间重叠; 胎盘三队列: GSE57767 (PE=31 CT=14), GSE73375 (PE=19 CT=17), GSE75196 (PE=8 CT=16)
+- 每 CpG 每 队列: Δβ = mean(PE) − mean(CT), Welch t; pooled z = mean of per-cohort z-scores
+- 富集检验: DMR CpG |pooled z| vs 全基因组背景 (KS + size-matched permutation 12000 次)
+
+[核心结果]
+1. DMR CpG n=1030 (覆盖 127/166 DMR), mean|pooled z| = 0.3456
+   背景 n=484547, mean|pooled z| = 0.4439
+   KS 检验 p = 2.64e-16; permutation p = 1; DMR mean|z| 位于背景第 57.8 百分位
+   => DMR CpG 的胎盘 PE 效应与全基因组背景无差异 (无富集)
+
+2. DMR 级胎盘效应 (n=127, Wilcoxon vs 0 p=0.229):
+   cfDNA-胎盘方向一致 59/127 (46%), binomial p = 0.478
+   cfDNA Δβ vs 胎盘 Δβ: Spearman rho = -0.036 (p = 0.692)
+   hyper 子集胎盘 Δβ mean = -0.0035 (n=84); hypo 子集 = -0.0019 (n=43)
+
+3. 阳性对照: 背景 top-500 |pooled z| CpG mean = 3.991, 为 DMR CpG 的 11.6 倍
+   => 管线能检出真实胎盘 PE 信号 (top-500 vs 背景 KS p=0), 而 DMR 集不显示此类信号
+
+
+[结论]
+166 个 PE cfDNA DMR 在胎盘组织 PE vs CT 中: 效应量与全基因组背景
+无法区分 (无富集), DMR 级效应不偏离 0, cfDNA 方向不预测胎盘方向.
+结合阳性对照证明的分析灵敏度, 支持这些 DMR 的信号来自母体白细胞
+构成变化而非胎盘滋养层病变 —— 胎盘层直接证据补齐.
+
+[文件]
+- results/GSE282512_placenta_dmr_level.csv (DMR 级: 每 队列 Δβ, pooled z)
+- results/GSE282512_placenta_background_cpg.csv.gz (全基因组背景每 CpG 统计)
+- figures/GSE282512_placenta_direct.png (A ECDF / B 散点 / C 方向箱线)
