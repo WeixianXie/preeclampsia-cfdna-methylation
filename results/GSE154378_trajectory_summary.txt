@@ -1,0 +1,76 @@
+GSE154378 DMR 孕期轨迹验证 汇总
+日期: 2026-08-31 12:39 
+
+样本: 134 (Normal 44 / PreX 40 / GDM 33 / cHTN 10 / NP 7)
+标记: 5820 (Type.I 1013 + Type.II 4807 ), bin 1 .. 5820 (v4 终版表, bin=坐标排序排名, 三重验证 rho=0.89/0.82/0.81)
+
+[Part 1] Type.II 胎盘信息标记轨迹验证
+   placenta_dir n_bin  mean_rho n_pos n_neg       sign_p
+         <char> <int>     <num> <int> <int>        <num>
+1:         FLAT    60 0.1296536    34    24 3.662940e-01
+2:         HIGH   397 0.5423419   341    45 6.034925e-51
+
+[Part 2] Type.I 组织标记 cfDNA 均值
+              tissue n_bin  mean_beta median_beta mean_methyl_pct
+              <char> <int>      <num>       <num>           <num>
+ 1:        Esophagus    53 0.74194231  0.86264050       74.194231
+ 2:          B-cells    85 0.70749938  0.85385459       70.749938
+ 3:            Brain   229 0.70714553  0.85976703       70.714553
+ 4:      Neutrophils    45 0.68026580  0.68456745       68.026580
+ 5:         Pancreas   133 0.54433381  0.78883272       54.433381
+ 6:            Heart    14 0.53089061  0.87033068       53.089061
+ 7:             Lung     6 0.49859334  0.55766398       49.859334
+ 8:            Colon   161 0.48140399  0.72502308       48.140399
+ 9:   Adrenal glands    60 0.45632395  0.13576081       45.632395
+10:            Liver   166 0.32284822  0.08171205       32.284822
+11:          T-cells    57 0.14090750  0.06354415       14.090750
+12: Small intestines     3 0.10448756  0.10472441       10.448756
+13:  Adipose tissues     1 0.04280886  0.04280886        4.280886
+
+[Part 3] DMR×标记重叠
+重叠标记数: 7  涉及DMR: 7 
+Key: <region_id>
+   region_id   qchr    qstart      qend   bin   type    tissue direction
+       <int> <char>     <num>     <num> <int> <char>    <char>    <char>
+1:      1293   chr1 171750800 171783163   403     II               hyper
+2:      2925   chr1 161141100 161147758   391     II               hyper
+3:     14324   chr7  94926988  94953844  2208     II                hypo
+4:     38086   chr1 161145759 161149758   391     II               hyper
+5:     52982  chr10  70088931  70092930  2901     II               hyper
+6:    104782  chr10  70089757  70096958  2901     II               hyper
+7:    106528   chr3  49937233  49942034   993      I Esophagus     hyper
+
+[Part 5] 轨迹 rho × 参考组织谱相关
+              tissue     rho_cor             p
+              <char>       <num>         <num>
+ 1:         Placenta  0.47529388  0.000000e+00
+ 2:         Pancreas  0.24019097  4.394345e-77
+ 3:        Esophagus  0.17880818  5.687978e-43
+ 4:            Colon  0.16450544  1.500971e-36
+ 5:   Adrenal glands  0.14015365  6.793418e-27
+ 6:            Brain  0.11042989  3.059772e-17
+ 7:            Heart  0.07214293  3.652858e-08
+ 8:            Liver  0.07200059  3.885707e-08
+ 9: Small intestines -0.05882772  7.172234e-06
+10:            Lungs -0.10312101  3.214995e-15
+11:  Adipose tissues -0.17566138  1.644368e-41
+12:          B-cells -0.25119265  2.302681e-84
+13:          T-cells -0.28872903 5.035561e-112
+14:      Neutrophils -0.33852198 7.605503e-156
+
+[Part 5b] Type.I 组织轨迹
+              tissue n_bin    mean_rho  n_up n_down       sign_p
+              <char> <int>       <num> <int>  <int>        <num>
+ 1:  Adipose tissues     1  0.60000000     1      0 1.000000e+00
+ 2: Small intestines     3  0.13333333     1      1 1.000000e+00
+ 3:      Neutrophils    45  0.12444444    21     17 7.659918e-01
+ 4:            Liver   166  0.09091455    73     58 8.159683e-01
+ 5:            Colon   161 -0.08106408    57     75 4.012054e-02
+ 6:   Adrenal glands    60 -0.08569669    21     29 2.450608e-01
+ 7:             Lung     6 -0.13333333     2      4 6.875000e-01
+ 8:          B-cells    85 -0.16000000    25     43 5.025090e-02
+ 9:          T-cells    57 -0.21505612    15     30 6.273668e-02
+10:            Brain   229 -0.24022191    58    124 1.945408e-07
+11:         Pancreas   133 -0.28199556    35     84 8.250000e-07
+12:        Esophagus    53 -0.33207547    12     32 8.023309e-04
+13:            Heart    14 -0.56699034     1     12 1.293945e-02
