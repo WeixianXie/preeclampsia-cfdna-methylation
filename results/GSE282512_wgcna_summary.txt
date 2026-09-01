@@ -1,0 +1,33 @@
+== WGCNA: cfDNA 区域甲基化共模块网络 ==
+
+输入: top 5000 高变异区域 x 64 样本; soft power 7 (signed)
+模块数: 4 (含 grey); 模块大小 top: grey=2809, turquoise=1769, blue=371, brown=51, NA=NA, NA=NA, NA=NA, NA=NA
+
+---- 模块-性状 (前 12 行) ----
+         module   trait          r            p
+         <char>  <char>      <num>        <num>
+ 1:      MEgrey    Mono  0.5203377 1.047473e-05
+ 2:      MEblue      PE  0.4871348 4.463396e-05
+ 3:      MEblue      NK -0.4517538 1.789127e-04
+ 4: MEturquoise    Mono  0.4230713 4.959057e-04
+ 5:      MEgrey CD8Tmem  0.3738188 2.344303e-03
+ 6:      MEblue     Bnv  0.3536945 4.142633e-03
+ 7: MEturquoise     Bnv -0.3125745 1.191450e-02
+ 8:     MEbrown CD4Tmem  0.2866757 2.163937e-02
+ 9:     MEbrown  CD4Tnv -0.2855111 2.220170e-02
+10:      MEblue CD4Tmem  0.2610115 3.723318e-02
+11: MEturquoise CD8Tmem  0.2591097 3.868930e-02
+12:     MEbrown      PE  0.2427821 5.323563e-02
+
+---- DMR 模块富集 (前 6) ----
+      module     n n_dmr p_fisher
+      <char> <int> <int>    <num>
+1: turquoise  1769    52  3.1e-04
+2:      blue   371    36  7.3e-17
+3:      grey  2809    11  1.0e+00
+4:     brown    51     0  1.0e+00
+
+DMR 归属: 99/166 候选 DMR 进入 WGCNA 集合
+hyper/hypo 分布: hyper=43, hypo=56
+
+注: 模块-白细胞比例关联可指示哪些共甲基化模块对应细胞构成; DMR 富集模块指示 PE 信号的组织来源
