@@ -1,0 +1,27 @@
+Early-pregnancy gene-model external validation (scripts/56)
+========================================================================
+DMR gene set: 127 unique symbols from 166 DMRs
+Gene coverage: GSE85307 62, GSE86200 66, both 58 (genes used in model: 58)
+
+GSE85307 elastic-net OOF (train cohort)                 AUC=0.519 [0.421,0.617] n=157 PE=47
+GSE85307 signature-score (train cohort)                 AUC=0.616 [0.524,0.706] n=157 PE=47
+GSE86200 enrollment (early pregnancy) elastic-net       AUC=0.285 [0.097,0.507] n=30 PE=6
+GSE86200 enrollment (early pregnancy) signature-score   AUC=0.431 [0.166,0.701] n=30 PE=6
+GSE86200 32-38 wk (late pregnancy) elastic-net          AUC=0.618 [0.319,0.875] n=30 PE=6
+GSE86200 32-38 wk (late pregnancy) signature-score      AUC=0.542 [0.312,0.792] n=30 PE=6
+
+Top single genes in GSE86200 early pregnancy:
+  SEBOX           AUC=0.819
+  LBP             AUC=0.812
+  IDH3B           AUC=0.764
+  COA4            AUC=0.764
+  SPDYE3          AUC=0.750
+  UBE2U           AUC=0.743
+  SF3B2           AUC=0.708
+  SSX5            AUC=0.701
+  HDAC3           AUC=0.694
+  PAAF1           AUC=0.667
+
+Positive / null controls (scripts/56b, GSE85307, 5-fold OOF):
+  genome-wide top-500 MAD genes: AUC = 0.532
+  50x random 58-gene sets (excl. DMR): mean AUC = 0.479 [0.346, 0.585]
