@@ -1,0 +1,36 @@
+== GoDMC mQTL 深度注释 (P1-6) ==
+
+[A] cis-mQTL 覆盖度 (GoDMC 显著对 p<~1e-5, N=32,000)
+  DMR CpG (166 DMR):       298/1033 具显著 cis-mQTL (28.8%)
+  HM450 背景非 DMR CpG:    182909/484544 (37.7%)
+  Fisher OR=0.669, p=2.08e-09
+  hyper DMR: 174/785 (22.2%) vs hypo DMR: 124/248 (50.0%), OR=0.285, p=4.63e-16
+
+[B] 7 个 MR CpG cis-mQTL 结构
+  cg18129748   106528             746 对 | lead p=0 beta=-0.243 | DMR hyper Δβ=0.10193 | IV 4 (coding/splice 0, reg 0)
+  cg24308560   106528            2953 对 | lead p=0 beta=-0.376 | DMR hyper Δβ=0.10193 | IV 20 (coding/splice 3, reg 0)
+  cg27360567   106528            1617 对 | lead p=0 beta=-0.403 | DMR hyper Δβ=0.10193 | IV 20 (coding/splice 2, reg 0)
+  cg00387872   12268 SLC17A1    4271 对 | lead p=0 beta=0.316 | DMR hypo Δβ=-0.1185 | IV 52 (coding/splice 1, reg 0)
+  cg19490609   12268 SLC17A1    1619 对 | lead p=0 beta=-0.197 | DMR hypo Δβ=-0.1185 | IV 21 (coding/splice 0, reg 0)
+  cg25753631   12268 SLC17A1    1672 对 | lead p=0 beta=-0.295 | DMR hypo Δβ=-0.1185 | IV 28 (coding/splice 3, reg 0)
+  cg15445000   84604            1413 对 | lead p=0 beta=0.238 | DMR hypo Δβ=-0.1392 | IV 15 (coding/splice 0, reg 0)
+
+[C] IV SNP 功能后果 (Ensembl VEP, GRCh38, n=160)
+  intronic/ncRNA       120
+  flanking             18
+  UTR                  8
+  coding               7
+  intergenic           4
+  splice               2
+  unknown              1
+
+[D] cfDNA 观测方向 x MR 因果方向 (显著 MR 结果)
+  cg27360567   GH_FinnGen obs=hyper OR=0.924 p=0.04 -> opposite
+  cg19490609   PE_FinnGen obs=hypo  OR=0.898 p=0.0001 -> consistent
+  cg15445000   PE_FinnGen obs=hypo  OR=1.089 p=0.00022 -> opposite
+  cg15445000   PE_Tyrmi  obs=hypo  OR=1.059 p=0.0024 -> opposite
+  cg15445000   GH_FinnGen obs=hypo  OR=1.048 p=0.026 -> opposite
+
+判读要点:
+  - 若显著 MR 的方向与 cfDNA 观测方向相反 (opposite), 支持 DMR 甲基化为 PE 的结果/伴随标志
+    (反向因果或白细胞构成混杂), 而非 PE 的因果驱动因素
