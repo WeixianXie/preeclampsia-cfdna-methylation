@@ -1,0 +1,7 @@
+setting,auc,ci_low,ci_high,n,n_pe
+GSE85307 elastic-net OOF (train cohort),0.519,0.4212,0.6166,157,47
+GSE85307 signature-score (train cohort),0.6162,0.5235,0.7058,157,47
+GSE86200 enrollment (early pregnancy) elastic-net,0.2847,0.0972,0.5069,30,6
+GSE86200 enrollment (early pregnancy) signature-score,0.4306,0.1665,0.7014,30,6
+GSE86200 32-38 wk (late pregnancy) elastic-net,0.6181,0.3194,0.875,30,6
+GSE86200 32-38 wk (late pregnancy) signature-score,0.5417,0.3125,0.7917,30,6
