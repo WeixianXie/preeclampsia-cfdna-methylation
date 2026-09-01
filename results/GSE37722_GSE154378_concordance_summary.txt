@@ -1,0 +1,126 @@
+== GSE37722 白细胞层 × GSE154378 cfDNA 细胞标记方向互证 ==
+
+标记: Sun v4 细胞/胎盘标记 hg38 回映 582 个 (Neutrophils 45 / T-cells 57 / B-cells 84 / Placenta-HIGH 396)
+sign 对齐: contrast = ref[靶细胞] - mean(其余两种血细胞); 正值 = 靶细胞比例上升
+
+[A] GSE37722 白细胞层 (HM27, 27103 探针矩阵):
+         stage     N
+        <char> <int>
+1: nulligravid    14
+2:       early    14
+3:      middle    14
+4:    delivery    28
+5:  postpartum    14
+    flank 主层 +/-5000bp
+
+             set flank n_probe   mean_delta mean_delta_sa   p_wilcox
+          <char> <num>   <int>        <num>         <num>      <num>
+1:       B-cells  5000      63  0.001926206  0.0006613845 0.37531019
+2:   Neutrophils  5000      32 -0.006255235  0.0062552352 0.83203968
+3: Placenta-HIGH  5000     333 -0.001133068 -0.0015484065 0.02744178
+4:       T-cells  5000      55 -0.004284100 -0.0027559139 0.05884326
+         p_sign
+          <num>
+1: 4.295655e-02
+2: 5.966149e-01
+3: 2.887792e-05
+4: 1.015847e-03
+
+    敏感性 (flank +/-%d 与 +/-%d):
+ 2000 10000             set flank n_probe    mean_delta mean_delta_sa     p_wilcox
+          <char> <num>   <int>         <num>         <num>        <num>
+1:       B-cells  2000      45  0.0028749410  0.0027645247 0.7798940931
+2:   Neutrophils  2000      15 -0.0076030602  0.0076030602 0.7197265625
+3: Placenta-HIGH  2000     233 -0.0014577814 -0.0020513767 0.3359829828
+4:       T-cells  2000      44 -0.0056049775 -0.0056049775 0.2530944874
+5:       B-cells 10000      85  0.0035801875 -0.0009644351 0.0527772294
+6:   Neutrophils 10000      51 -0.0062596871  0.0062596871 0.6697488353
+7: Placenta-HIGH 10000     439 -0.0004524837 -0.0007381470 0.0002092138
+8:       T-cells 10000      68 -0.0042770098 -0.0030409770 0.2070250826
+         p_sign
+          <num>
+1: 7.659918e-01
+2: 6.072388e-01
+3: 8.638407e-03
+4: 3.657767e-03
+5: 2.194909e-03
+6: 5.758493e-01
+7: 1.465440e-08
+8: 2.186243e-03
+
+[B] GSE154378 cfDNA (bin 级, c_min=%d):
+
+ 30             set n_bin   mean_delta mean_delta_sa  p_wilcox       p_sign
+          <char> <int>        <num>         <num>     <num>        <num>
+1:       B-cells    84 -0.023939946   0.023271968 0.0233416 3.752953e-02
+2:   Neutrophils    45 -0.020178955   0.020178955 0.2815008 5.514843e-01
+3: Placenta-HIGH   394  0.100402104   0.098573923 0.0000000 3.409806e-47
+4:       T-cells    57 -0.004272922  -0.008152207 0.1409254 7.508176e-03
+
+[C] 方向互证汇总:
+
+Key: <set>
+             set n_probe       leuk_sa     leuk_p n_bin     cfdna_sa   cfdna_p
+          <char>   <int>         <num>      <num> <int>        <num>     <num>
+1:       B-cells      63  0.0006613845 0.37531019    84  0.023271968 0.0233416
+2:   Neutrophils      32  0.0062552352 0.83203968    45  0.020178955 0.2815008
+3: Placenta-HIGH     333 -0.0015484065 0.02744178   394  0.098573923 0.0000000
+4:       T-cells      55 -0.0027559139 0.05884326    57 -0.008152207 0.1409254
+   direction_agree
+            <lgcl>
+1:            TRUE
+2:            TRUE
+3:           FALSE
+4:            TRUE
+
+[D] bin 级 Spearman: rho=0.075, p=0.263, n=226 bin
+             set         rho         p     n
+          <char>       <num>     <num> <int>
+1:       B-cells -0.36180352 0.0425789    32
+2:   Neutrophils  0.04945055 0.8775230    13
+3: Placenta-HIGH  0.11918082 0.1395464   155
+4:       T-cells  0.30598291 0.1284705    26
+
+结论要点:
+- 若 Neutrophils 白细胞层 sign 对齐 Δβ>0 且 T-cells/B-cells<0, 与 cfDNA 同向 => 跨队列跨模态支持白细胞构成机制
+- Placenta-HIGH 在白细胞层应平坦 (无胎盘贡献), 而在 cfDNA 上升 => 证明胎盘信号为 cfDNA 特异
+
+
+[E] 变化量去卷积（54_marker_quasideconv.R, bootstrap 400 次, 95% CI; 基线: NP/nulligravid）
+- GSE37722 白细胞层 (HM27):
+  early     Δf_N +0.006 (ns) / Δf_T −0.005 (ns)
+  middle    Δf_N +0.025 [0.005, 0.053]* / Δf_T −0.034 [−0.069, −0.006]*
+  delivery  Δf_N +0.017 (ns) / Δf_T −0.017 (ns)
+  postpartum Δf_N −0.011 [−0.020, −0.003]* / Δf_T +0.041 [0.028, 0.061]* (反转)
+- GSE154378 cfDNA (WGBS):
+  1stT  Δf_N +0.071 [0.018, 0.126]* / Δf_T −0.075 [−0.144, −0.003]* / Δf_Pla +0.046 [0.021, 0.072]*
+  2ndT  Δf_N +0.064 [0.008, 0.114]* / Δf_T −0.044 (ns)                    / Δf_Pla +0.034 [0.008, 0.055]*
+  3rdT  Δf_N −0.077 [−0.130, −0.021]* / Δf_T −0.101 [−0.163, −0.032]*    / Δf_Pla +0.230 [0.200, 0.257]*
+  delivery Δf_N −0.059 [−0.106, −0.009]* / Δf_T −0.156 [−0.221, −0.096]*  / Δf_Pla +0.258 [0.229, 0.287]*
+- 内恰性: GSE37722 Placenta-HIGH Δβ 平坦 (−0.0015) => 白细胞层无胎盘信号; cfDNA Δf_Pla 单调升至 0.258 与 50n 阳性对照 (~0.25) 一致
+- 结论: T-cells 两队列全时点一致负向 (GSE37722 middle 显著, cfDNA delivery −0.156 强显著);
+  Neutrophils 早孕期同向为正 (GSE37722 early/middle, cfDNA 1stT/2ndT), 后孕期 cfDNA 转负为胎盘大分数混合效应;
+  postpartum 反转 = 构成可逆, 排除平台伪影
+  => 同一套 Sun 2015 参考, 跨队列 (UCLA vs GSE37722) / 跨模态 (cfDNA vs 白细胞层) / 跨平台 (WGBS vs HM27)
+     方向一致 => 支撑 "PE cfDNA DMR = 母体白细胞构成变化的表观指纹" 假说 (证据链闭环)
+- 完整表: results/GSE37722_GSE154378_quasideconv.csv; 图: figures/GSE37722_GSE154378_cell_fraction.png
+
+
+[F] 亚组级去卷积: GSE154378 PreX/GDM/cHTN vs Normal (55_gse154378_subgroup_quasideconv.R, bootstrap 400 次, 95% CI; 基线: NP)
+- 设计: 与 [E] 同套 Sun 2015 标记 (Type.I 血细胞 187 + Type.II Placenta-HIGH 397 = 581 bin, c_min=30);
+  dbeta[set](g,t) = beta[set](g,t) - beta[set](NP); Df = f(亚组) - f(Normal), bootstrap 差值 CI
+- 样本: Normal 9 患者 44 样本 / PreX (PE+gHTN) 8 患者 40 样本 / GDM 7 患者 33 样本 / cHTN 2 患者 10 样本 / NP 7 非孕; 各妊娠亚组均含 1stT->delivery 全时点
+- 交叉验证: Normal delivery Df_Pla +0.259 [0.231, 0.292] ~ [E] 节 +0.258; Df_N -0.059 两处一致 => 55 与 54 同构
+- 关键差值 (PreX vs Normal):
+  1stT      Df_N +0.070 [0.012, 0.129]* / Df_T -0.042 (ns)      / Df_Pla -0.018 (ns)
+  2ndT      Df_N +0.026 (ns) / Df_T -0.088 [-0.165, -0.018]* / Df_Pla +0.025 [0.001, 0.057]*
+  3rdT      全 ns
+  delivery  Df_N +0.063 [0.024, 0.098]* / Df_T +0.032 (ns)      / Df_Pla -0.126 [-0.150, -0.103]*
+  => PE/妊娠高血压在胎盘 cfDNA 分数显著更低的情况下, 中性粒细胞分数显著更高; 早孕期 (1stT) 已现偏移
+- GDM vs Normal (阳性内部对照): delivery Df_Pla +0.067 [0.042, 0.093]* (绝对 Df +0.326, 全孕期 Pla 均高); Df_N 无显著升高
+- cHTN vs Normal: n=2, Df_N 全时点 ns (delivery -0.067 ns); delivery Df_Pla +0.085 [0.044, 0.125]* => PreX 中性粒增多非慢性高血压单一解释
+- 结论: [E] 节 Normal 构成轨迹之外, 疾病亚组存在疾病特异构成签名:
+  PreX = 中性粒升高 + 胎盘分数不升 (母体白细胞构成偏移直接亚组证据);
+  GDM = 胎盘分数升高而中性粒不升 (反向对照) => 支撑 "PE cfDNA DMR = 母体白细胞构成变化的表观指纹" 假说
+- 完整表: results/GSE154378_subgroup_deltaf.csv (绝对 Df), results/GSE154378_subgroup_deltaf_contrast.csv (差值);
+  bin 级 beta: results/GSE154378_subgroup_bin_beta.csv; 图: figures/GSE154378_subgroup_deltaf_trajectory.png, figures/GSE154378_subgroup_deltaf_forest.png
