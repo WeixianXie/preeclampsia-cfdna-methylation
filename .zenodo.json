@@ -1,0 +1,33 @@
+{
+  "title": "Analysis code and intermediate result tables for cfDNA methylation signatures in pre-eclampsia",
+  "upload_type": "software",
+  "creators": [
+    {
+      "name": "Xie, Weixian",
+      "affiliation": "Department of Anesthesiology, Affiliated Qingyuan Hospital, Guangzhou Medical University, Qingyuan, Guangdong, China",
+      "orcid": "0009-0005-5285-8716"
+    }
+  ],
+  "description": "Reproducible analysis pipeline for the manuscript 'Maternal leukocyte composition, not placental pathology, underlies pre-eclampsia-associated differences in plasma cell-free DNA methylation'. The repository contains numbered R and Python scripts, selected intermediate result tables, composed manuscript figures, and the manuscript source documents.",
+  "keywords": [
+    "pre-eclampsia",
+    "cell-free DNA",
+    "DNA methylation",
+    "reduced-representation bisulfite sequencing",
+    "Mendelian randomization",
+    "leukocyte composition",
+    "bioinformatics pipeline"
+  ],
+  "license": "mit",
+  "language": "eng",
+  "publication_date": "2026-09-01",
+  "version": "1.0.0",
+  "access_right": "open",
+  "related_identifiers": [
+    {
+      "relation": "isSupplementTo",
+      "identifier": "https://github.com/REPLACE_WITH_REPO_URL",
+      "resource_type": "software"
+    }
+  ]
+}
